@@ -26,44 +26,44 @@ const Maptest = ({ coords, places, setCoords, setBounds, setChildClicked, weathe
     return marker;
   };
 
-  const renderRoute = (map, maps) => {
+  // const renderRoute = (map, maps) => {
 
-    const start = new google.maps.LatLng(37.5298043, 127.1176134)
-    const end = new google.maps.LatLng(37.5346895, 127.1229848)
+  //   const start = new google.maps.LatLng(37.5298043, 127.1176134)
+  //   const end = new google.maps.LatLng(37.5346895, 127.1229848)
 
-    const directionsService = new maps.DirectionsService();
+  //   const directionsService = new maps.DirectionsService();
 
-    let directionsDisplay = new maps.DirectionsRenderer({
-      suppressMarkers: true,
-      suppressBicyclingLayer: true,
-    });
+  //   let directionsDisplay = new maps.DirectionsRenderer({
+  //     suppressMarkers: true,
+  //     suppressBicyclingLayer: true,
+  //   });
 
-    directionsDisplay.setOptions({
-      polylineOptions: {
-        strokeColor: '#ff85a2',
-        strokeWeight: '4',
-        strokeOpacity: '0.7',
-      },
-      // draggable: true,
-    });
+  //   directionsDisplay.setOptions({
+  //     polylineOptions: {
+  //       strokeColor: '#ff85a2',
+  //       strokeWeight: '4',
+  //       strokeOpacity: '0.7',
+  //     },
+  //     // draggable: true,
+  //   });
 
-    directionsDisplay.setMap(map);
-    const request = {
-      origin: start,
-      destination: end,
-      // travelMode: google.maps.TravelMode.WALKING,
-      travelMode: 'WALKING',
-    };
-    directionsService.route(request, (result, status) => {
-      if (status === 'OK') {
-        Session.set('directionsService', result);
-        directionsDisplay.setDirections(result);
-        Meteor.setTimeout(() => {
-          directionsDisplay.setOptions({ preserveViewport: true });
-        }, 1000);
-      }
-    });
-  };
+  //   directionsDisplay.setMap(map);
+  //   const request = {
+  //     origin: start,
+  //     destination: end,
+  //     // travelMode: google.maps.TravelMode.WALKING,
+  //     travelMode: 'WALKING',
+  //   };
+  //   directionsService.route(request, (result, status) => {
+  //     if (status === 'OK') {
+  //       Session.set('directionsService', result);
+  //       directionsDisplay.setDirections(result);
+  //       Meteor.setTimeout(() => {
+  //         directionsDisplay.setOptions({ preserveViewport: true });
+  //       }, 1000);
+  //     }
+  //   });
+  // };
 
   const addCircle = async (map, maps) => {
     let circle = await new maps.Circle({
@@ -102,11 +102,6 @@ const Maptest = ({ coords, places, setCoords, setBounds, setChildClicked, weathe
     zoom: 14
   };
 
-  // useEffect(() => {
-  //   setMapCoords(coords);
-  //   console.log({ coords })
-  // }, [coords]);
-
   return (
     // Important! Always set the container height explicitly
     <div style={{ height: '100vh', width: '100%' }}>
@@ -119,15 +114,13 @@ const Maptest = ({ coords, places, setCoords, setBounds, setChildClicked, weathe
         onGoogleApiLoaded={({ map, maps }) => {
           renderMarker(map, maps),
             addCircle(map, maps);
-          renderRoute(map, maps)
+          // renderRoute(map, maps)
         }
         }
         onChange={(e) => {
           console.log({ e })
           setCoords({ lat: e.center.lat, lng: e.center.lng });
           setBounds({ ne: e.marginBounds.ne, sw: e.marginBounds.sw });
-          // setCoords({ lat: e.center.lat, lng: e.center.lng });
-          // setBounds({ ne: e.marginBounds.ne, sw: e.marginBounds.sw });
         }}
       >
       </GoogleMapReact>

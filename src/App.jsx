@@ -1,10 +1,7 @@
 import { useState, useEffect } from 'react'
 import './App.scss'
-import { processtarot } from './utils/processtarot';
-import Result from './components/Result';
 import Loader from './components/Loader/index.jsx';
 import useScrollDirection from "./hooks/useScrollDirection.js"
-import Map from './components/Map/Map';
 import Maptest from './components/Maptest';
 const App = () => {
   const [err, setErr] = useState(false);
